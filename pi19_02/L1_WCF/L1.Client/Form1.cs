@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.ServiceReference1;
 
 namespace WindowsFormsApp1
 {
@@ -20,11 +21,11 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string sUrlService = textBox1.Text;
+            string sUrlService = "http://127.0.0.1:8000/Service1";
             BasicHttpContextBinding pBinding = new BasicHttpContextBinding(); 
             EndpointAddress pEndpointAddress = new EndpointAddress(sUrlService); 
-            Service1Client pClient = new Service1Client(pBinding, pEndpointAddress); 
-            //MessageBox.Show(pClient.GetData(1));
+            EncyclopediaServiceClient pClient = new EncyclopediaServiceClient(pBinding, pEndpointAddress); 
+            pClient.GetArticle("001","0001");
         }
     }
 }
